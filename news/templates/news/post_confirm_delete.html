@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Usunięcie wpisu{% endblock %}
+{% block header %}Usuń wpis{% endblock %}
+
+{% block content %}
+<h2>Czy na pewno chcesz usunąć ten wpis?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input class="w3-button w3-red rounded-edges" type="submit" value="Potwierdź"/>
+        <a class="w3-button w3-gray rounded-edges" href="{% url 'news:news_list' %}">Zrezygnuj</a>
+    </form>
+{% endblock %}

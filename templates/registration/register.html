@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    Zarejestruj się
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_filters %}
+<div class="w3-container">
+	<h1>Zarejestruj się</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<button class="btn btn-primary w3-button w3-margin-top w3-green" type="submit">Zarejestruj</button>
+	</form>
+	<p class="text-center">Jeśli masz już konto, <a href="{% url 'news:login' %}">zaloguj się</a>.</p>
+</div>
+{% endblock %}

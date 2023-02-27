@@ -1,0 +1,10 @@
+{%  extends 'base.html' %}
+{% block title %}Nowy post{% endblock %}
+{% block header %}Dodaj swój post{% endblock %}
+{% block content %}
+<form method="post">
+    <table>{{ form }}</table>
+    {% csrf_token %}
+    <input class="w3-button w3-green submit-button rounded-edges" style="position: center" type="submit" value="Zapisz" />
+</form>
+{% endblock %}

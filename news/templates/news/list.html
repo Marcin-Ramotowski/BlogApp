@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+<title>{% block title %}
+Lista postów
+{% endblock %}</title>
+
+<h1>{% block header %} Lista postów {%  endblock %}</h1>
+{%  block content %}
+    <a class="w3-button w3-light-green w3-margin-left rounded-edges" href="{% url 'news:news_create' %}">+ Dodaj post</a>
+    {% for post in posts %}
+        <div class="post">{{ post.title }}
+            <a class="w3-button w3-green two-sided-margin rounded-edges" href={{ post.get_details_url }}>
+                Zobacz więcej
+            </a>
+        {% if post.author == user %}
+            <a class="w3-button w3-orange two-sided-margin rounded-edges" href="{{ post.get_update_url }}">
+                Edytuj
+            </a>
+            <a class="w3-button w3-red two-sided-margin rounded-edges" href="{{ post.get_delete_url }}">
+                Usuń
+            </a>
+        {% endif %}
+        </div>
+
+{% empty %}
+        <p>Jeszcze nie ma żadnych postów.</p>
+{% endfor %}
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Poprzednia</a>
+    {% endif %}
+
+    Strona {{ page_obj.number }}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Następna</a>
+    {%  endif %}
+{%  endblock %}

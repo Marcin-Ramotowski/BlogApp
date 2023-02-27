@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%  block title %} {{ post.title }} {% endblock %}
+    <h1>{% block header %} {{ post.title }} {%  endblock %}</h1>
+    {%  block content %}
+    <div class="w3-panel w3-pale-yellow" id="head_info">
+        Post utworzony {{ post.created }} przez użytkownika {{ post.author }}
+    </div>
+        <div class="sheet">{{ post.content }}</div>
+        <a class="w3-button w3-margin w3-gray rounded-edges" href="{% url 'news:news_list' %}">Wróć do listy postów</a>
+{%  endblock %}

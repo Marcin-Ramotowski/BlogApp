@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="{% static 'css/w3.css' %}" rel="stylesheet">
+    <link href="{% static 'css/news.css' %}" rel="stylesheet">
+</head>
+<body>
+    <header class="w3-container w3-teal"><h1>{% block header %} {%  endblock %}</h1></header>
+    <nav class="w3-container w3-pale-blue w3-margin-bottom">
+        <ul>
+            <li class="w3-button w3-blue"><a href="{%  url 'news:news_list' %}" id="id_posts_list">Posty</a></li>
+            {% if user.is_authenticated %}
+                <li class="w3-button w3-red"><a href="{%  url 'news:logout' %}" id="id_logout"> Wyloguj się</a></li>
+            {% else %}
+                <li class="w3-button w3-light-green"><a href="{%  url 'news:login' %}" id="id_login"> Zaloguj się</a></li>
+                <li class="w3-button w3-green"><a href="{%  url 'news:register' %}" id="id_register"> Zarejestruj się</a></li>
+            {%  endif %}
+        </ul>
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div class="w3-panel w3-green">{{ message }}</div>
+            {% elif message.tags == 'info' %}
+                <div class="w3-panel w3-yellow">{{ message }}</div>
+            {% elif message.tags == 'error' %}
+                <div class="w3-panel w3-red">{{ message }}</div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {%  block content %}
+    {%  endblock %}
+</body>
+</html>

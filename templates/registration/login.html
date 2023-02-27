@@ -1,0 +1,12 @@
+{%  extends 'base.html' %}
+{%  block title %} Logowanie {% endblock %}
+{%  block header %} Logowanie do systemu{% endblock %}
+{% block content %}
+    <h1>Logowanie</h1>
+    <form action="{% url 'news:login' %}" method="post">
+        <table>{{ form }}</table>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        <input  class="w3-button w3-green w3-margin" type="submit" value="Zaloguj się">
+    </form>
+{%  endblock %}
